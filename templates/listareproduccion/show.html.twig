@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Listareproduccion{% endblock %}
+
+{% block body %}
+    <h1>Lista de reproduccion</h1>
+{% set NumeroCanciones = 0 %}
+ {% set duracionTotal = 0 %}
+    <table class="table">
+        <tbody>
+            
+            <tr>
+              <td>  <h4>Titulolista: </h4></td>
+             <td><h4>{{ listareproduccion.titulolista }}</h4></td>
+            </tr>
+        <tr>
+               <th>Propietario de la lista </th>
+                <td>{{ listareproduccion.user }}</td>
+        </tr>
+        <tr>
+
+            <th><b>Canciones de la lista </b></th>
+             <th><b>Duración de la lista </b></th>
+        </tr>       
+        <tr>
+
+{#Inicio Experimento
+
+ #}
+
+      
+{% set sum = 0 %}
+{% set x2 = [ ] %}
+
+{#
+{% for i in 0..x|length-1 %}
+    {% set sum = sum + x[i] %}
+    {{ sum }}
+{% endfor %}
+#}
+
+{#Fin Experimento #}
+
+        {% set duracionTotaldelaLista =  0 %}
+               
+                 {% for cancion in listareproduccion.canciones %}
+                 {% set NumeroCanciones = NumeroCanciones + 1 %}
+                  {% set duracion =  cancion.duracion %}  
+              {% set duracionTotal = duracionTotal + cancion.duracion %}
+                 
+                 
+                   <td> {{ cancion.titulo }}</td>
+                   <td>
+                    {% set minutos= cancion.duracion /60 %}
+                     {{minutos|round(0, 'floor')}}:{{ cancion.duracion % 60}} 
+                   
+                    
+                    
+                    
+                    </td>
+              
+                  {% set duracionTotaldelaLista = cancion.duracion %}
+          
+
+              {% if not loop.last %}
+
+              
+               {% endif %}
+
+              </tr>
+
+              
+            {% endfor %}
+          
+              <p> La duración total de la lista es
+              
+              {% set minutos= duracionTotal /60 %}
+                     {{minutos|round(0, 'floor')}}:{{ duracionTotal % 60}} 
+            {#  La duración total de la lista es  {{ duracionTotal }}
+              
+              
+               segundos<p> #}
+              <p>La lista se compone de   {{ NumeroCanciones }} canciones<p> 
+                
+        </tr>
+
+
+
+
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_listareproduccion_index') }}">back to list</a>
+
+    <a href="{{ path('app_listareproduccion_edit', {'id': listareproduccion.id}) }}">edit</a>
+
+    {{ include('listareproduccion/_delete_form.html.twig') }}
+{% endblock %}

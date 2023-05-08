@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Temazo{% endblock %}
+
+{% block body %}
+    <h1>Temazo</h1>
+
+    <table class="table">
+        <tbody>
+       
+            <tr>
+                <th>Titulo</th>
+                <td>{{ temazo.titulo }}</td>
+            </tr>
+            <tr>
+                <th>Autor</th>
+                <td>{{ temazo.autor }}</td>
+            </tr>
+            <tr>
+                <th>Duracion</th>
+                <td>
+              {% set minutos= temazo.duracion /60 %}
+                     {{minutos|round(0, 'floor')}}:{{temazo.duracion % 60}} 
+                
+                          
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a  class="original-button"  href="{{ path('app_temazo_index') }}">back to list</a>
+
+    <a  class="original-button"  href="{{ path('app_temazo_edit', {'id': temazo.id}) }}">edit</a>
+
+    {{ include('temazo/_delete_form.html.twig') }}
+{% endblock %}

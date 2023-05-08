@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Temazo{% endblock %}
+
+{% block body %}
+    <h1>Edit Temazo</h1>
+
+    {{ include('temazo/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a  class="btn btn-primary" href="{{ path('app_temazo_index') }}">Volver a la lista</a>
+
+    {{ include('temazo/_delete_form.html.twig') }}
+{% endblock %}

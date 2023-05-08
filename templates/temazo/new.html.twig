@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Temazo{% endblock %}
+
+{% block body %}
+    <h1>Create new Temazo</h1>
+
+    {{ include('temazo/_form.html.twig') }}
+
+    <a  class="original-button" href="{{ path('app_temazo_index') }}">back to list</a>
+{% endblock %}

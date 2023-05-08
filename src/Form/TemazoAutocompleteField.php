@@ -1,0 +1,33 @@
+<?php
+
+namespace App\Form;
+
+use App\Entity\Temazo;
+use App\Repository\TemazoRepository;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\UX\Autocomplete\Form\AsEntityAutocompleteField;
+use Symfony\UX\Autocomplete\Form\ParentEntityAutocompleteType;
+
+#[AsEntityAutocompleteField]
+class TemazoAutocompleteField extends AbstractType
+{
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'class' => Temazo::class,
+            'placeholder' => 'Choose a Temazo',
+            //'choice_label' => 'name',
+
+            'query_builder' => function(TemazoRepository $temazoRepository) {
+                return $temazoRepository->createQueryBuilder('temazo');
+            },
+            //'security' => 'ROLE_SOMETHING',
+        ]);
+    }
+
+    public function getParent(): string
+    {
+        return ParentEntityAutocompleteType::class;
+    }
+}

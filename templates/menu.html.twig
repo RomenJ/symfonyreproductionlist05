@@ -1,0 +1,60 @@
+    {% if app.user %}
+ 
+ <div class="MenuIni">
+ {# <img class="foto" width="100x" src="/images/sf.png"> #}
+         <h6 class="Negro"> Usuario registrado : {{ app.user.username }} </h6>
+
+        <h6 class="Logouth"><a href="{{ path('app_logout') }}">Logout</a> </h6>         
+         {# 
+         <p class="Negro"> >Tipo de Usuario : {{ app.user.roles }} </p>  #}
+         
+       {#       <li>Mida el dolor de la sesión <code><a href="{{ path('app_evamax_index') }}"> Realizar Evamax</a></code></li>      #}
+        
+        <a class="original-button" href="{{path('app_home')}}"> Home</a>
+        <a class="original-button"  href="{{ path('app_temazo_new') }}"> Alta Canción</a>
+        <a class="original-button" href="{{ path('app_temazo_index') }}"> Listado canciones </a>
+        <a class="original-button" href="{{ path('app_listareproduccion_new') }}"> Nueva lista </a>  
+        <a class="original-button" href="{{ path('app_listareproduccion_mislistas') }}"> Mis listas</a>
+         <a class="original-button" href="{{ path('app_temazo_findgen') }}"> Buscador</a>
+         <a class="original-button" href="{{ path('app_listareproduccion_reproducirlistas') }}"> Reproducir Listas</a>       
+{#
+          <a  class="btn"  href="{{ path('app_tema_index') }}"> Panel de temas</a>
+          <a  class="btn"  href="{{ path('app_comentario_index') }}"> Panel de comentarios</a> #}
+
+      
+     
+   </div>
+   
+
+ {#
+   <div class="MenuIni">
+   <br>
+  <h6 class="Negro"> Usuario registrado : {{ app.user.username }} </h6>
+  <h6><a class="Negro" href="{{ path('app_logout') }}">Logout</a> </h6>
+  
+        <a class="btn" href="{{path('app_home')}}"> Home</a>
+         <a class="btn"  href="{{ path('app_temazo_new') }}"> Alta Canción</a>
+         <a class="btn" href="{{ path('app_temazo_index') }}"> Ver listado completo de canciones </a>
+        <li> <a class="# " href="{{ path('app_listareproduccion_new') }}"> Nueva lista de reproducción</a></li>     
+        <li> <a class="# " href="{{ path('app_listareproduccion_mislistas') }}"> Mis listas de reproducción</a></li>
+        <li> <a class="#" href="{{ path('app_temazo_findgen') }}"> Buscador de canciones</a></li>
+        <li> <a class="#" href="{{ path('app_listareproduccion_reproducirlistas') }}"> Reproducir Listas</a></li>
+    
+   
+   </div>
+   #}
+ {% else %}
+    <div class="MenuIni">
+      
+      <p class="Negro"> Welcome Mr/Mss Usuario no registrado</p>
+      <img class="fotoMargarita" width="100x" src="/images/programacion-web-symfony.png"> 
+          {# <li>REGISTRO <code><a href="{{ path('app_register') }}"> registro</a></code></li>
+        <li>LOGIN <code><a href="{{ path('app_login') }}"> login</a></code></li> #}
+        <a class="original-button"  href="{{ path('app_register') }}"> Registro</a></li>
+        <a  class="original-button"  href="{{ path('app_login') }}"> Login</a></li>
+            
+    
+ 
+ </div>
+     {% endif %}
+      

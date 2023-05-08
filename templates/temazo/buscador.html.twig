@@ -1,0 +1,61 @@
+
+
+{% extends 'base.html.twig' %}
+
+
+
+{#
+
+busquedabypaci.html.twig
+
+#}
+
+
+{% block title %}Buscador!{% endblock %}
+
+{% block body %}
+
+{# new  Versiion  #}
+
+<h1>Búsqueda por título  o autor </h1>
+
+<form action="/temazo/findsong2" method="POST">
+    <p>Introduzca título o autor : <input type="text" name="nombresong2" size="40"></p>
+  
+  {#  <p>Introduzca título o autor: <input type="text" name="busqueda" size="40"></p>#}
+    <input type="submit" value="Buscar">
+    <input type="reset" value="Borrar búsqueda">
+
+
+
+
+  </p>
+
+</form>
+
+
+
+{# Old Versiion  #}
+
+<h1>Búsqueda por título </h1>
+
+    <form action="/temazo/findsong" method="POST">
+    <p>Introduzca título: <input type="text" name="nombresong" size="40"></p>
+    <input type="submit" value="Buscar cancion">
+    <input type="reset" value="Borrar búsqueda">
+  </p>
+
+</form>
+
+<h1>Búsqueda por autor </h1>
+
+    <form action="/temazo/findsongbyauth" method="POST">
+    <p>Nombre del terapeuta: <input type="text" name="nombreauth" size="40"></p>
+    <input type="submit" value="Buscar autor">
+    <input type="reset" value="Borrar búsqueda">
+  </p>
+
+
+
+</form>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Listareproduccion index{% endblock %}
+
+{% block body %}
+    <h1>Reproducir Canciones de la lista</h1>
+
+    <table class="table">
+        <thead>
+            <tr>         
+                <th>Titulo de la lista</th>
+                <th>Autor de  la lista</th>
+                <th>Títulos de canciones de la lista</th>
+                <th>Ruta de las canciones</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for listareproduccion in listareproduccions %}
+            <tr>
+                <td><a href="{{ path('app_listareproduccion_show', {'id': listareproduccion.id}) }}">    {{ listareproduccion.titulolista }}</a></td>
+                <td>{{ listareproduccion.user }}</td>
+         <td>
+            {% for cancion in listareproduccion.canciones %}
+             <p> {{ cancion.titulo }}
+               <audio controls>
+            <source src="/music/{{cancion.archivenamesong}}" type="audio/mp3"> 
+                Su navedador no soporta este elemento. Abra esta página con otro navegador
+            </audio><p>
+
+
+
+
+              {% if not loop.last %} {% endif %}
+            {% endfor %}
+          </td>
+
+         <td>
+            {% for cancion in listareproduccion.canciones %}
+        <!--
+        <img class="fotoHeader" width="40%" src="/images/programacion-web-symfony.png">  -->
+         <li>   {{ cancion.archivenamesong}} 
+        
+        {#
+        <audio controls>
+            <source src="/music/{{cancion.archivenamesong}}" type="audio/mp3"> 
+                Su navedador no soporta este elemento. Abra esta página con otro navegador
+            </audio></li>
+            #}
+              {% if not loop.last %} {% endif %}
+                {% endfor %}
+          </td>
+                <td>
+                    
+                    <a  class="original-button"  href="{{ path('app_listareproduccion_edit', {'id': listareproduccion.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a   class="original-button" href="{{ path('app_listareproduccion_new') }}">Create new</a>
+{% endblock %}

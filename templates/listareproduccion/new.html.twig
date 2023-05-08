@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Listareproduccion{% endblock %}
+
+{% block body %}
+    <h1>Crear nueva Listareproduccion</h1>
+
+    {{ include('listareproduccion/_form.html.twig') }}
+
+    <a  class="original-button" href="{{ path('app_listareproduccion_index') }}">Volver a la lista</a>
+{% endblock %}

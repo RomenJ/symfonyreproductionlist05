@@ -1,0 +1,145 @@
+
+
+{#versión paginada #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Temazos index{% endblock %}
+
+{% block body %}
+    <h1>Listas de reproducción </h1>
+ {# total items count #}
+
+ {#
+<div class="count">
+    {{ pagination.getTotalItemCount }}
+
+</div>
+
+#}
+<table >
+    <tr>
+        {# sorting of properties based on query components #}
+        <th><b>{{ knp_pagination_sortable(pagination, 'Lista ', 'a.id') }}</b></th>
+        <th><b>{{ knp_pagination_sortable(pagination, 'Author de la lista', 'a.id') }}</b></th>
+      
+  
+
+        
+    </tr>
+
+    {# table body #}
+    {% for listareproduccion in pagination %}
+        <tr {% if loop.index is odd %}class="color"{% endif %}>
+          
+          <tr>
+                
+                <td>
+                
+                <a href="{{ path('app_listareproduccion_show', {'id': listareproduccion.id}) }}">    {{ listareproduccion.titulolista }}</a>
+                
+                </td>
+                <td>{{ listareproduccion.user }}</td>
+                <td>
+                
+{#                          
+                     {% set minutos=  temazo.duracion /60 %}
+                     {{minutos |round(0, 'floor') }} minutos,
+                    {{ temazo.duracion  % 60}} segundos. Total segs:{{temazo.duracion}}
+              
+  #}              
+                
+
+
+                <td>
+                    
+                     <a  class="original-button"  href="{{ path('app_listareproduccion_edit', {'id': listareproduccion.id}) }}">edit</a>
+                </td>
+            </tr>
+
+    {#
+    #}
+            
+        </tr>
+    {% endfor %}
+</table>
+{# display navigation #}
+<div class="navigation">
+    {{ knp_pagination_render(pagination) }}
+</div>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{#
+Versión sin paginar
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Listareproduccion index{% endblock %}
+
+{% block body %}
+    <h1>Mis listas de reproduccion index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+         
+                <th>Titulo de la lista</th>
+                <th>Autor de  la lista</th>
+                <th>Títulos de canciones de la lista</th>
+                <th>Duración de las canciones</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+    {% for listareproduccion in listareproduccions %}
+            <tr>
+
+    <td><a href="{{ path('app_listareproduccion_show', {'id': listareproduccion.id}) }}">    {{ listareproduccion.titulolista }}</a></td>
+            
+                <td>{{ listareproduccion.user }}</td>
+                
+         <td>
+            {% for cancion in listareproduccion.canciones %}
+              {{ cancion.titulo }}
+            
+              {% if not loop.last %}, {% endif %}
+            {% endfor %}
+          </td>
+         <td>
+            {% for cancion in listareproduccion.canciones %}
+        
+              {{ cancion.duracion}}
+
+              {% if not loop.last %}, {% endif %}
+            {% endfor %}
+          </td>
+                <td>
+                    <a   class="original-button" href="{{ path('app_listareproduccion_show', {'id': listareproduccion.id}) }}">show</a>
+                    <a  class="original-button"  href="{{ path('app_listareproduccion_edit', {'id': listareproduccion.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">No se han encontrado registros</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a  class="original-button" href="{{ path('app_listareproduccion_new') }}">Crear nueva </a>
+{% endblock %}
+#}

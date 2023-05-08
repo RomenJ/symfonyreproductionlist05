@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Listareproduccion{% endblock %}
+
+{% block body %}
+    <h1>Edit Listareproduccion</h1>
+
+    {{ include('listareproduccion/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_listareproduccion_index') }}">back to list</a>
+
+    {{ include('listareproduccion/_delete_form.html.twig') }}
+{% endblock %}

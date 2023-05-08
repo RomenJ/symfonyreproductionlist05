@@ -1,0 +1,125 @@
+
+{#versión paginada #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Temazos index{% endblock %}
+
+{% block body %}
+    <h1>Listado de temazos</h1>
+ {# total items count #}
+
+ {#
+<div class="count">
+    {{ pagination.getTotalItemCount }}
+
+</div>
+
+#}
+<table >
+    <tr>
+        {# sorting of properties based on query components #}
+        <th><b>{{ knp_pagination_sortable(pagination, 'Temazo', 'a.id') }}</b></th>
+        <th><b>{{ knp_pagination_sortable(pagination, 'Author', 'a.id') }}</b></th>
+        <th{% if pagination.isSorted('a.tema') %} class="sorted"{% endif %}> <b>
+        
+            {{ knp_pagination_sortable(pagination, 'Duración', 'a.tema') }}</b>
+        </th>
+  
+
+        
+    </tr>
+
+    {# table body #}
+    {% for temazo in pagination %}
+        <tr {% if loop.index is odd %}class="color"{% endif %}>
+          
+          <tr>
+                
+                <td>
+                <a    href="{{ path('app_temazo_show', {'id': temazo.id}) }}">{{ temazo.titulo }}</a>
+                
+                
+                </td>
+                <td>{{ temazo.autor }}</td>
+                <td>
+                
+                          
+                     {% set minutos=  temazo.duracion /60 %}
+                     {{minutos |round(0, 'floor') }} minutos,
+                    {{ temazo.duracion  % 60}} segundos. Total segs:{{temazo.duracion}}
+              
+                
+                
+
+
+                <td>
+                    
+                    <a   class="original-button" href="{{ path('app_temazo_edit', {'id': temazo.id}) }}">Editar</a>
+                </td>
+            </tr>
+
+    {#
+    #}
+            
+        </tr>
+    {% endfor %}
+</table>
+{# display navigation #}
+<div class="navigation">
+    {{ knp_pagination_render(pagination) }}
+</div>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+{# versión original:sin paginar
+{% extends 'base.html.twig' %}
+
+{% block title %}Temazo index{% endblock %}
+
+{% block body %}
+    <h1>Listado de temazos</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Titulo</th>
+                <th>Autor</th>
+                <th>Duracion</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for temazo in temazos %}
+            <tr>
+                
+                <td>{{ temazo.titulo }}</td>
+                <td>{{ temazo.autor }}</td>
+                <td>{{ temazo.duracion }}</td>
+                <td>
+                    <a  class="original-button"  href="{{ path('app_temazo_show', {'id': temazo.id}) }}">Detalles</a>
+                    <a   class="original-button" href="{{ path('app_temazo_edit', {'id': temazo.id}) }}">Editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a  class="btn btn-primary" href="{{ path('app_temazo_new') }}">Crear nuevo</a>
+{% endblock %}
+#}

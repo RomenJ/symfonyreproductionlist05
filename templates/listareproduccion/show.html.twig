@@ -14,13 +14,14 @@
              <td><h4>{{ listareproduccion.titulolista }}</h4></td>
             </tr>
         <tr>
-               <th>Propietario de la lista </th>
+               <th>Propietario/a de la lista </th>
                 <td>{{ listareproduccion.user }}</td>
         </tr>
         <tr>
-
             <th><b>Canciones de la lista </b></th>
-             <th><b>Duración de la lista </b></th>
+            <th><b>Dispoible reproducción </b></th>
+             <th><b>Duración de la canción *  </b>
+           </th>
         </tr>       
         <tr>
 
@@ -48,8 +49,23 @@
                   {% set duracion =  cancion.duracion %}  
               {% set duracionTotal = duracionTotal + cancion.duracion %}
                  
-                 
-                   <td> {{ cancion.titulo }}</td>
+
+
+
+                   <td> {{ cancion.titulo }}
+                   
+                   
+                   </td>
+
+
+<td>
+      <audio controls>
+            <source src="/music/{{cancion.archivenamesong}}" type="audio/mp3"> 
+                Su navedador no soporta este elemento. Abra esta página con otro navegador
+            </audio><p>
+</td>
+
+
                    <td>
                     {% set minutos= cancion.duracion /60 %}
                      {{minutos|round(0, 'floor')}}:{{ cancion.duracion % 60}} 
@@ -85,10 +101,18 @@
         </tr>
 
 
-
-
         </tbody>
+
+        
     </table>
+
+<tr>
+
+<td>  *La duración es la estimada por el usuario. La plartaforma no se hace responsable de los 
+errores en duración introducidos por los usuarios. 
+
+ </td> 
+ </tr>
 
     <a href="{{ path('app_listareproduccion_index') }}">back to list</a>
 

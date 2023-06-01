@@ -10,11 +10,11 @@
 
     {% if app.user %}
         <div class="mb-3">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+            Usted está logueado como  {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
         </div>
 
     {% else %}
- <div class="MyShadowDiv">
+ <div class="MyShadowDiv divlogin">
     <h1 class="h3 mb-3 font-weight-normal">Introduzca los datos de su cuenta</h1>
     <label for="inputUsername">Nombre de usuari@</label>
     <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>

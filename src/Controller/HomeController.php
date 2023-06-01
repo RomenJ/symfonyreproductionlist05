@@ -14,7 +14,7 @@ use Knp\Component\Pager\PaginatorInterface;
 
 class HomeController extends AbstractController
 {
-    #[Route('/home', name: 'app_home')]
+    #[Route('/', name: 'app_home')]
     public function index(ListareproduccionRepository $listareproduccionRepository,PaginatorInterface $paginator, Request $request): Response
     {
         $query=$listareproduccionRepository->findMyListas($this->getUser());

@@ -20,6 +20,17 @@ class RegistrationFormType extends AbstractType
     {
         //Importante
         $entity = $builder->getData();
+        
+        /* Los admin son como los vampiros, sólo un admin puede hacer un admin
+        */
+        $rolesChoices = [
+            'User' => 'ROLE_USER',
+        ];
+        
+        if ($entity->getRoles() === ['ROLE_ADMIN']) {
+            $rolesChoices['Admin'] = 'ROLE_ADMIN';
+        }
+
 
         $builder
             ->add('username')
@@ -27,14 +38,14 @@ class RegistrationFormType extends AbstractType
             ->add('telephone')
         
             ->add('roles', ChoiceType::class, [
-                'choices' => [
-                    'User' => 'ROLE_USER',
-                    'Admin' => 'ROLE_ADMIN',
-                ],
+                'choices' => $rolesChoices,
                 'expanded' => true,
                 'multiple' => true,
                 'data' => $entity->getRoles() // Current roles assigned..
             ])
+
+
+
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller

@@ -7,25 +7,18 @@
 {% block title %}Temazos index{% endblock %}
 
 {% block body %}
-    <h1>Listas de reproducción </h1>
+    
  {# total items count #}
 
- {#
-<div class="count">
-    {{ pagination.getTotalItemCount }}
-
-</div>
-
-#}
+ {% if app.user %}
+    
+ <h1>Listas de reproducción </h1>
 <table >
     <tr>
         {# sorting of properties based on query components #}
         <th><b>{{ knp_pagination_sortable(pagination, 'Lista ', 'a.id') }}</b></th>
         <th><b>{{ knp_pagination_sortable(pagination, 'Author de la lista', 'a.id') }}</b></th>
-         <th><b>{{ knp_pagination_sortable(pagination, 'Canciones', 'a.id') }}</b></th>
-  
-
-        
+        <th><b>{{ knp_pagination_sortable(pagination, 'Canciones', 'a.id') }}</b></th> 
     </tr>
 
     {# table body #}
@@ -33,7 +26,6 @@
         <tr {% if loop.index is odd %}class="color"{% endif %}>
           
           <tr>
-                
                 <td>
                 
                 <a href="{{ path('app_listareproduccion_show', {'id': listareproduccion.id}) }}">    {{ listareproduccion.titulolista }}</a>
@@ -52,27 +44,11 @@
                 {% if not loop.last %}  {% endif %}
               {% endfor %}
            </td>
-
-
-                
-{#                          
-                     {% set minutos=  temazo.duracion /60 %}
-                     {{minutos |round(0, 'floor') }} minutos,
-                    {{ temazo.duracion  % 60}} segundos. Total segs:{{temazo.duracion}}
-              
-  #}              
-                
-
-
                 <td>
                     
                      <a  class="original-button"  href="{{ path('app_listareproduccion_edit', {'id': listareproduccion.id}) }}">edit</a>
                 </td>
-            </tr>
-
-    {#
-    #}
-            
+            </tr>      
         </tr>
     {% endfor %}
 </table>
@@ -81,90 +57,14 @@
     {{ knp_pagination_render(pagination) }}
 </div>
 
-{% endblock %}
-
-
-
-
-
-
-
-
-
-
-
-{# 
-{% extends 'base.html.twig' %}
-
-{% block title %}Hello HomeController!{% endblock %}
-
-{% block body %}
-
-
-    {% if app.user %}
- 
-  <h1>Mis listas de reproduccion</h1>
- <table class="table table-striped">
-        <thead >
-            <tr>
-           
-                <th><b>Titulo de la lista</b></th>
-                <th><b>Autor de  la lista</b></th>
-                <th><b>Títulos de canciones de la lista</b></th>
-                <th><b>Duración de las canciones</b></th>
-                 <th><b>Sumatorio de las canciones</b></th>
-                 <th><b>Número total de canciones de la lista</b></th>
-         
-            </tr>
-        </thead>
-        <tbody>
-           {% set duracion = '' %}
-        {% for listareproduccion in listareproduccions %}
-            <tr>
-             <td>  <a href="{{ path('app_listareproduccion_show', {'id': listareproduccion.id}) }}">    {{ listareproduccion.titulolista }}</a></td>
-   
-                <td>{{ listareproduccion.user }}</td>
-                
-         <td>
-            {% for cancion in listareproduccion.canciones %}
-              <a href="{{ path('app_temazo_show', {'id': cancion.id}) }}">    
-              
-                <li>{{ cancion.titulo }} duración:
-                 {{ cancion.duracion }} </li></a>
-
-                {% if not loop.last %}  {% endif %}
-              {% endfor %}
-           </td>
-         <td>
-  
- {% set NumeroCanciones = 0 %}
- {% set duracionTotal = 0 %}
-
-            {% for cancion in listareproduccion.canciones %}
-              {% set NumeroCanciones = NumeroCanciones + 1 %}
-          <li>    {{ cancion.duracion}} </li>
-              {% set duracion =  cancion.duracion %}  
-              {% set duracionTotal = duracionTotal + cancion.duracion %}
-              {% if not loop.last %} {% endif %}
-             {% endfor %}
-              </td>
-                  <td> 
-                   <li>                 
-                     {% set minutos= duracionTotal /60 %}
-                     {{minutos|round(0, 'floor')}}:{{ duracionTotal % 60}} 
-                     </li>
-                    </td>
-                 <td> 
-                    {{NumeroCanciones}} 
-            </tr>   
-           {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
- 
-     {% endif %}
-{% endblock %}
+ {#
+Si no estás logueado, te da un agradable mensaje de bienvenida, acompañado de un gatito cool
 #}
+
+{% else %}
+
+<p><a  href="{{ path('app_register') }}">  Regístrate </a> o   <a  href="{{ path('app_login') }}">login en nuestra plataforma <a>para acceder a servicios musicales personalizados<p>
+<img class="fotoHeader" width="40%" src="/images/Leonardo_Diffusion_a_smiling_cute_blue_cat_with_headphones_we_0.jpg"> 
+<p class="littleCenter">Image Powered by <a href="https://leonardo.ai/">Leonardo.ai <p>
+{% endif %}
+{% endblock %}

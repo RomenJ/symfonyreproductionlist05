@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-03-2023 a las 21:39:08
+-- Tiempo de generación: 01-06-2023 a las 13:06:00
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -60,7 +60,20 @@ INSERT INTO `listareproduccion` (`id`, `user_id`, `titulolista`) VALUES
 (6, 2, 'La Lista de Ana nº1'),
 (7, 4, 'La Lista de John'),
 (8, 4, 'Por todos mis hits I'),
-(10, 4, 'Mis hits parte IV');
+(10, 4, 'Mis hits parte IV'),
+(11, 1, 'Pepito\'s Hits'),
+(12, 1, 'Pepe Powerrr Soft Primera Marcha'),
+(15, 5, 'Lolita in tha house'),
+(16, 1, 'Pepito se viene arriba'),
+(17, 1, 'Pepito se viene abajo'),
+(18, 2, 'Ana in da house nº 2'),
+(19, 2, 'lista 3'),
+(20, 1, 'Por todos mis hits IV'),
+(21, 1, 'Virtual V'),
+(22, 2, 'Ana in tha roof'),
+(23, 2, 'Ana Tolia'),
+(24, 1, 'Pepito goes to the beach'),
+(25, 3, 'Pepito 2 roof');
 
 -- --------------------------------------------------------
 
@@ -78,16 +91,44 @@ CREATE TABLE `listareproduccion_temazo` (
 --
 
 INSERT INTO `listareproduccion_temazo` (`listareproduccion_id`, `temazo_id`) VALUES
-(6, 18),
 (6, 20),
 (7, 23),
 (7, 24),
-(8, 18),
 (8, 20),
 (8, 21),
 (8, 22),
 (10, 22),
-(10, 23);
+(10, 23),
+(11, 20),
+(11, 21),
+(11, 22),
+(12, 21),
+(12, 24),
+(15, 21),
+(15, 25),
+(16, 20),
+(16, 25),
+(17, 23),
+(17, 24),
+(18, 21),
+(18, 25),
+(19, 23),
+(19, 25),
+(20, 22),
+(20, 23),
+(20, 24),
+(20, 25),
+(21, 20),
+(21, 22),
+(22, 21),
+(22, 25),
+(23, 21),
+(23, 24),
+(23, 25),
+(24, 22),
+(24, 25),
+(25, 20),
+(25, 25);
 
 -- --------------------------------------------------------
 
@@ -124,12 +165,12 @@ CREATE TABLE `temazo` (
 --
 
 INSERT INTO `temazo` (`id`, `titulo`, `autor`, `duracion`, `archivenamesong`) VALUES
-(18, 'Ava Adore', 'Smashing Pumkins', 234, '2-The-Smashing-Pumpkins-Ava-Adore-6421c719973dc.mp3'),
 (20, 'Mr. Crowley', 'Ozzy', 123, 'onlymp3-to-OZZY-OSBOURNE-Mr-Crowley-1981-Live-Video-G3LvhdFEOqs-256k-1654749909919-6421db97d8af4.mp3'),
 (21, 'Weapon of Choice', 'Fat Boy Slim', 456, 'onlymp3-to-Fatboy-Slim-ft-Bootsy-Collins-Weapon-Of-Choice-Official-4k-Video-wCDIYvFmgW8-256k-1654118061697-6421dc417586a.mp3'),
 (22, 'Lonely Boy', 'The Black Keys', 467, 'onlymp3-to-The-Black-Keys-Lonely-Boy-Official-Music-Video-a-426RiwST8-256k-1654810733983-6421dc72964e3.mp3'),
 (23, 'Lullaby', 'The cure', 324, '3-The-Cure-Lullaby-6421dc967b215.mp3'),
-(24, 'Just like heaven', 'The cure', 678, 'onlymp3-to-The-Cure-Just-Like-Heaven-n3nPiBai66M-256k-1654125665636-6421dd093a693.mp3');
+(24, 'Just like heaven', 'The cure', 678, 'onlymp3-to-The-Cure-Just-Like-Heaven-n3nPiBai66M-256k-1654125665636-6421dd093a693.mp3'),
+(25, 'The beautiful people', 'Marilyn Manson', 232, 'onlymp3-to-Marilyn-Manson-The-Beautiful-People-Ypkv0HeUvTc-256k-1654141771337-64528b7033a5d.mp3');
 
 -- --------------------------------------------------------
 
@@ -154,7 +195,10 @@ INSERT INTO `user` (`id`, `username`, `roles`, `password`, `email`, `telephone`)
 (1, 'pepe', '[]', '$2y$13$Qw7LBsd9ft6XeekyXpYc4OskH0YFarDGEpPHWOApomwXhzUHL6QkS', 'pepe@pepe.es', '123124324'),
 (2, 'ana', '[]', '$2y$13$ao4UmqLSNyiFQwReXlPjKeZRQQkOIMsu9Sm74FQgv0AsSpF7epqKS', 'ana@ana.es', '+34622902526'),
 (3, 'pepe2', '[\"ROLE_ADMIN\"]', '$2y$13$.4ZS.be079IReef3ta2re.84.XA0HUFNPfkV33df6FmQSPYWIYQrW', 'pepe@pepe.es', '123124324'),
-(4, 'John Smith', '[]', '$2y$13$M7eUOrnvmpCDkg7XdICujeSUeqSmllHAV7IsCuU/173ytVoUClSQe', 'jshd@lkwje.com', '23984732');
+(4, 'John Smith', '[]', '$2y$13$M7eUOrnvmpCDkg7XdICujeSUeqSmllHAV7IsCuU/173ytVoUClSQe', 'jshd@lkwje.com', '23984732'),
+(5, 'lola', '[]', '$2y$13$QyL.WDLtLOEhfOxU3Kg71OuR2RdXX.chZR.iY4tJbuUPOBpq7eavK', 'lola@mola.es', '12324'),
+(6, 'richi', '[\"ROLE_USER\",\"ROLE_ADMIN\"]', '$2y$13$U8zVTKsD1lPa0we6yOvgouLmmtAtFstE7deIBSAiW4p7lx21gLPai', 'r2@r.es', '123123'),
+(7, 'Domingo', '[]', '$2y$13$S78uC1C.hTrIMar20pugJ.7TY7rt5QhOycUrZn8dvCfhh09wtzJH6', 'dom@dom.es', '123');
 
 --
 -- Índices para tablas volcadas
@@ -211,7 +255,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `listareproduccion`
 --
 ALTER TABLE `listareproduccion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `messenger_messages`
@@ -223,13 +267,13 @@ ALTER TABLE `messenger_messages`
 -- AUTO_INCREMENT de la tabla `temazo`
 --
 ALTER TABLE `temazo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas
